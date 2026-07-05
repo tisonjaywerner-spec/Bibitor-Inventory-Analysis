@@ -13,7 +13,7 @@ The engagement had two main goals:
 1. Validate that the provided data was imported correctly and matched the totals reported by the CIO.
 2. Analyze the data to recalculate excise taxes, evaluate profitability, and identify brands that may need management attention.
 
-The full writeup, including all supporting tables, sits in ![Final Report](docs/0. Final Report.docx). This README covers the process and highlights from that report.
+The full writeup, including all supporting tables, sits in [Final Report](docs/0.%20Final%20Report.docx). This README covers the process and highlights from that report.
 
 ## Data
 
