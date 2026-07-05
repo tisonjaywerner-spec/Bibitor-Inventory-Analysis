@@ -42,8 +42,8 @@ Partway through the project I found that the Brands table's size column sometime
 
 Before doing any analysis, I confirmed the data was imported correctly by comparing my record counts and summary values against the numbers given by the CIO.
 
-- [`1. Validation - Records.sql`](sql/1.%Validation%20-%20Records.sql) checks the row count of every table using CTEs.
-- [`2. Validation - Values.sql`](sql/2.%Validation%20-%20Values.sql) checks that total sales, purchases, excise taxes, beginning inventory, and ending inventory all matched what the CIO reported.
+- [`1. Validation - Records.sql`](sql/1.%20Validation%20-%20Records.sql) checks the row count of every table using CTEs.
+- [`2. Validation - Values.sql`](sql/2.%20Validation%20-%20Values.sql) checks that total sales, purchases, excise taxes, beginning inventory, and ending inventory all matched what the CIO reported.
 
 Both checks came back clean, confirming every table had been imported correctly.
 
@@ -53,16 +53,16 @@ Both checks came back clean, confirming every table had been imported correctly.
 
 I recalculated excise taxes for both spirits and wine using the current tax rate and each brand's true volume (bottle size times pack size), then compared the result against what Bibitor actually charged.
 
-- [`3. Excise Tax Calc - Spirits.sql`](sql/3.%Excise%20Tax%20Calc%20-%20Spirits.sql) and [`Excise Tax Calc - Wine.sql`](sql/Excise%20Tax%20Calc%20-%20Wine.sql) return every brand where the actual and calculated excise tax do not match.
-- [`4. ExciseTaxTotal Spirits.sql`](sql/4.%ExciseTaxTotal%20Spirits.sql) and [`ExciseTaxTotal Wine.sql`](sql/ExciseTaxTotal%20Wine.sql) roll those discrepancies up into a total dollar difference for each classification.
+- [`3. Excise Tax Calc - Spirits.sql`](sql/3.%20Excise%20Tax%20Calc%20-%20Spirits.sql) and [`3. Excise Tax Calc - Wine.sql`](sql/3.%20Excise%20Tax%20Calc%20-%20Wine.sql) return every brand where the actual and calculated excise tax do not match.
+- [`4. ExciseTaxTotal Spirits.sql`](sql/4.%20ExciseTaxTotal%20Spirits.sql) and [`4. ExciseTaxTotal Wine.sql`](sql/4.%20ExciseTaxTotal%20Wine.sql) roll those discrepancies up into a total dollar difference for each classification.
 
 This turned up a pattern of rounding errors across the board, and a bigger issue where the pack size was being left out of the excise tax calculation entirely for multi-bottle packs. Management should look at fixing both of these.
 
 **Company & Brand Profitability**
 
-- [`5. Company Analysis.sql`](sql/5.%Company%20Analysis.sql) calculates COGS, gross margin, inventory turnover (ITR), and days inventory outstanding (DIO) for the company as a whole.
-- [`6. TopBottom Brand Analysis.sql`](sql/6.%TopBottom%20Brand%20Analysis.sql) breaks the same metrics out by brand and returns the top and bottom 6 by gross margin.
-- [`7. GrossMarginbyMonth.sql`](sql/7.%GrossMarginbyMonth.sql) tracks gross margin by month for those same top and bottom brands to check for seasonality.
+- [`5. Company Analysis.sql`](sql/5.%20Company%20Analysis.sql) calculates COGS, gross margin, inventory turnover (ITR), and days inventory outstanding (DIO) for the company as a whole.
+- [`6. TopBottom Brand Analysis.sql`](sql/6.%20TopBottom%20Brand%20Analysis.sql) breaks the same metrics out by brand and returns the top and bottom 6 by gross margin.
+- [`7. GrossMarginbyMonth.sql`](sql/7.%20GrossMarginbyMonth.sql) tracks gross margin by month for those same top and bottom brands to check for seasonality.
 
 Bibitor's overall gross margin came in at 31%, ahead of the 25% industry average (per Dunn & Bradstreet's Key Business Ratios), with inventory sitting on the shelf for about 85 days on average. The bottom 6 brands by gross margin all sold exclusively in the summer months, which points to a spoilage and purchasing-timing risk that the top brands, which sell year round, don't share.
 
